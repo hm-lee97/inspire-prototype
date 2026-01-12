@@ -3,13 +3,14 @@
     import { createEventDispatcher } from "svelte";
     import { Globe, Bell } from "lucide-svelte";
     import { fly } from "svelte/transition";
-    import QuickMenu from "../../components/QuickMenu.svelte";
+    import BottomNav from "../../components/BottomNav.svelte";
     import DMain from "./DMain.svelte";
+    import DWallet from "./DWallet.svelte";
+    import DSecurePass from "./DSecurePass.svelte";
     import DCasino from "./DCasino.svelte";
-    import DMap from "./DMap.svelte";
     import DMy from "./DMy.svelte";
 
-    export let view = "main"; // 'main' | 'casino' | 'map' | 'my'
+    export let view = "main"; // 'main' | 'wallet' | 'pass' | 'casino' | 'my'
 
     // Normalize 'd' and 'home' to 'main'
     $: activeView = view === "d" || view === "home" ? "main" : view;
@@ -19,10 +20,14 @@
     function handleBack() {
         dispatch("back");
     }
+
+    function handleNav(event) {
+        dispatch("navigate", event.detail);
+    }
 </script>
 
-<div class="d-app" style="background: var(--color-bg-primary);">
-    <div class="d-header">
+<div class="d-app">
+    <header class="d-header">
         <button class="back-btn" on:click={handleBack} title="Exit to Selector">
             <svg
                 width="24"
@@ -43,32 +48,37 @@
                 <Bell size={20} />
             </button>
         </div>
-    </div>
+    </header>
 
     <main class="d-content">
         <DMain active={activeView === "main"} />
+        <DWallet active={activeView === "wallet"} />
+        <DSecurePass active={activeView === "pass"} />
         <DCasino active={activeView === "casino"} />
-        <DMap active={activeView === "map"} />
         <DMy active={activeView === "my"} />
     </main>
+
+    <BottomNav {activeView} on:navigate={handleNav} />
 </div>
 
 <style>
     .d-app {
         width: 100%;
         height: 100%;
-        position: relative;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: var(--color-bg-primary);
         color: var(--color-text-primary);
+        overflow: hidden;
     }
 
     .d-header {
+        flex-shrink: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: var(--safe-area-top) 20px 10px;
+        padding: calc(var(--safe-area-top) + 10px) 20px 10px;
         z-index: 10;
-        position: relative;
     }
 
     .back-btn,
@@ -92,11 +102,12 @@
     }
 
     .d-content {
-        height: 100%; /* Adjust as needed */
+        flex: 1;
+        overflow: hidden;
         position: relative;
     }
 
     .back-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
     }
 </style>

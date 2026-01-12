@@ -14,7 +14,7 @@
 <style>
     .header {
         text-align: center;
-        padding: var(--space-6) 0 var(--space-4);
+        padding: var(--space-10) 0 var(--space-4);
         position: relative;
         z-index: 1;
     }

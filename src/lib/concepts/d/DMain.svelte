@@ -1,168 +1,262 @@
-<!-- DMain.svelte -->
+<!-- DMain.svelte - Minimalist Redesign -->
 <script>
-    import { fade, fly } from "svelte/transition";
-    import QuickMenu from "../../components/QuickMenu.svelte";
-    import {
-        ChevronRight,
-        Clock,
-        Utensils,
-        ShoppingBag,
-        Landmark,
-        BedDouble,
-        Wifi,
-    } from "lucide-svelte";
+    import { fly, fade } from "svelte/transition";
+    import { Eye, EyeOff, ChevronRight } from "lucide-svelte";
 
     export let active = false;
 
-    const facilities = [
-        { name: "다이닝", icon: Utensils, desc: "시그니처 키친" },
-        { name: "쇼핑", icon: ShoppingBag, desc: "럭셔리 몰" },
-        { name: "아레나", icon: Landmark, desc: "월드 클래스 공연장" },
-        { name: "호텔", icon: BedDouble, desc: "프리미엄 스위트" },
-        { name: "편의시설", icon: Wifi, desc: "익스클루시브 라운지" },
-    ];
+    // Privacy toggle
+    let showPoints = false;
+    const maskedPoints = "P ****,***";
+    const realPoints = "P 1,250,500";
+
+    // User data
+    const user = {
+        name: "James W.",
+        resortTier: "PLATINUM",
+        casinoTier: "BLACK",
+    };
+
+    function togglePoints() {
+        showPoints = !showPoints;
+    }
 </script>
 
 {#if active}
-    <div class="d-main" in:fly={{ y: 20, duration: 400 }}>
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1 class="hero-title">INSPIRE<br />LUXURY</h1>
-            <p class="hero-subtitle">The Premium Member's Lounge</p>
+    <div class="d-main" in:fade={{ duration: 400 }}>
+        <!-- Welcome Section -->
+        <section class="welcome">
+            <p class="greeting">Welcome back,</p>
+            <h1 class="name">{user.name}</h1>
+        </section>
 
-            <div class="card-gold-accent">
-                <div class="card-content">
-                    <span class="badge">Limited Offer</span>
-                    <h2>시그니처 스위트</h2>
-                    <p>최고의 럭셔리를 50% 할인된 가격으로 경험하세요</p>
-
-                    <div class="time-sale-info">
-                        <Clock size={16} />
-                        <span>남은 시간 02:45:12</span>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <span>자세히 보기</span>
-                    <ChevronRight size={16} />
-                </div>
-                <div class="shimmer"></div>
-            </div>
-        </div>
-
-        <!-- Quick Menu -->
-        <div class="quick-menu-section">
-            <QuickMenu on:quick />
-        </div>
-
-        <!-- Key Facilities -->
-        <div class="section facilities">
-            <div class="section-header">
-                <h3>주요 시설</h3>
-                <button class="view-all">전체 보기</button>
-            </div>
-            <div class="facilities-scroll">
-                {#each facilities as fac}
-                    <div class="facility-card">
-                        <div class="fac-icon">
-                            <svelte:component this={fac.icon} size={24} />
+        <!-- Unified Membership Card -->
+        <section class="card-section">
+            <div class="membership-card">
+                <div class="card-inner">
+                    <!-- Tiers -->
+                    <div class="tiers">
+                        <div class="tier resort">
+                            <span class="tier-label">RESORT</span>
+                            <span class="tier-value">{user.resortTier}</span>
                         </div>
-                        <h4>{fac.name}</h4>
-                        <p>{fac.desc}</p>
+                        <div class="tier-divider"></div>
+                        <div class="tier casino">
+                            <span class="tier-label">CASINO</span>
+                            <span class="tier-value">{user.casinoTier}</span>
+                        </div>
                     </div>
-                {/each}
+
+                    <!-- Points -->
+                    <div class="points-row">
+                        <div class="points-info">
+                            <span class="points-label">보유 포인트</span>
+                            <span class="points-value"
+                                >{showPoints ? realPoints : maskedPoints}</span
+                            >
+                        </div>
+                        <button class="toggle-btn" on:click={togglePoints}>
+                            {#if showPoints}
+                                <EyeOff size={20} />
+                            {:else}
+                                <Eye size={20} />
+                            {/if}
+                        </button>
+                    </div>
+
+                    <!-- Card Shimmer -->
+                    <div class="shimmer"></div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <button class="cta-btn">
+                <span>PLATINUM 전용 혜택 확인</span>
+                <ChevronRight size={18} />
+            </button>
+        </section>
     </div>
 {/if}
 
 <style>
     .d-main {
         height: 100%;
-        overflow-y: auto;
-        padding: var(--space-4) var(--space-5) 100px; /* Bottom padding for nav */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-8) var(--space-6);
         color: var(--color-text-primary);
+        overflow: hidden;
     }
 
-    .hero {
-        margin-bottom: var(--space-6);
+    /* Welcome */
+    .welcome {
+        text-align: center;
+        margin-bottom: var(--space-10);
     }
 
-    .hero-title {
+    .greeting {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+    }
+
+    .name {
         font-size: var(--font-size-4xl);
-        font-weight: 700;
-        line-height: 1.1;
+        font-weight: 300;
+        letter-spacing: 0.05em;
         background: var(--gradient-gold);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: var(--space-2);
     }
 
-    .hero-subtitle {
-        color: var(--color-text-secondary);
-        margin-bottom: var(--space-4);
+    /* Card Section */
+    .card-section {
+        flex: 0 0 auto;
+        margin-bottom: var(--space-10);
     }
 
-    .card-gold-accent {
-        background: linear-gradient(
-            135deg,
-            rgba(212, 175, 55, 0.1),
-            rgba(0, 0, 0, 0.4)
-        );
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: var(--radius-xl);
-        padding: var(--space-5);
+    .membership-card {
+        background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-6);
         position: relative;
         overflow: hidden;
-        margin-bottom: var(--space-6);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        box-shadow:
+            0 20px 40px -15px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(212, 175, 55, 0.1);
     }
 
-    .card-gold-accent::before {
-        content: "";
+    .card-inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Tiers */
+    .tiers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-6);
+        margin-bottom: var(--space-8);
+    }
+
+    .tier {
+        text-align: center;
+    }
+
+    .tier-label {
+        display: block;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        color: var(--color-text-tertiary);
+        margin-bottom: var(--space-1);
+    }
+
+    .tier-value {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+    }
+
+    .tier.resort .tier-value {
+        color: var(--color-primary);
+    }
+
+    .tier.casino .tier-value {
+        color: #fff;
+    }
+
+    .tier-divider {
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Points */
+    .points-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: var(--space-6);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .points-label {
+        display: block;
+        font-size: var(--font-size-xs);
+        color: var(--color-text-tertiary);
+        margin-bottom: 2px;
+    }
+
+    .points-value {
+        font-size: var(--font-size-2xl);
+        font-weight: 600;
+        color: var(--color-primary);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .toggle-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: none;
+        color: var(--color-text-secondary);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .toggle-btn:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Shimmer */
+    .shimmer {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(212, 175, 55, 0.1),
-            transparent
+            135deg,
+            transparent 0%,
+            rgba(212, 175, 55, 0.03) 50%,
+            transparent 100%
         );
-        transform: skewX(-20deg) translateX(-150%);
-        animation: shine 6s infinite;
+        pointer-events: none;
     }
 
-    @keyframes shine {
-        0% {
-            transform: skewX(-20deg) translateX(-150%);
-        }
-        20% {
-            transform: skewX(-20deg) translateX(150%);
-        }
-        100% {
-            transform: skewX(-20deg) translateX(150%);
-        }
+    /* CTA */
+    .cta-section {
+        text-align: center;
     }
 
-    h3 {
-        margin: 0 0 var(--space-3);
-        font-weight: 600;
-    }
-
-    .quick-menu-section {
-        margin-bottom: var(--space-6);
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: var(--radius-xl);
-        padding: var(--space-2);
-    }
-
-    h4 {
+    .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        background: transparent;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        color: var(--color-primary);
+        padding: var(--space-3) var(--space-5);
+        border-radius: var(--radius-full);
         font-size: var(--font-size-sm);
-        color: var(--color-text-secondary);
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .cta-btn:active {
+        background: rgba(212, 175, 55, 0.1);
     }
 </style>

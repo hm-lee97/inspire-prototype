@@ -35,6 +35,7 @@
       bgColor: "#FDFCFB",
       light: true,
     },
+    /*
     {
       id: "ai",
       label: "C",
@@ -45,6 +46,7 @@
       bgColor: "#F8FAFC",
       light: true,
     },
+    */
     {
       id: "d",
       label: "D",
