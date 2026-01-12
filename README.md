@@ -1,43 +1,55 @@
-# Svelte + Vite
+# Inspire Prototype
 
-This template should help get you started developing with Svelte in Vite.
+다양한 디자인 컨셉과 기능을 탐색하고 시각화하기 위해 제안된 인스파이어 앱 프로토타입입니다.
+사용자 경험을 극대화하기 위해 4가지의 서로 다른 테마(Joyful, Refined, AI, Luxury)를 제공하며, 각 컨셉은 고유한 UI/UX와 내비게이션 구조를 갖추고 있습니다.
 
-## Recommended IDE Setup
+## 🎨 주요 컨셉 소개
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+이 프로젝트는 다음과 같은 4가지 핵심 컨셉을 포함하고 있습니다.
 
-## Need an official Svelte framework?
+### 1. Joyful (The Digital Playground)
+**"축제의 시작점"**
+- 생동감 넘치는 컬러와 인터랙션이 특징인 테마입니다.
+- 즐거움과 엔터테인먼트 요소를 강조하여 활기찬 리조트 분위기를 전달합니다.
+- **주요 특징**: 화려한 그라데이션, 다이내믹한 애니메이션
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+### 2. Refined (The Signature Collection)
+**"품격 있는 휴식"**
+- 절제된 우아함과 고급스러움을 표현한 테마입니다.
+- 밝고 세련된 톤앤매너로 편안하고 품격 있는 휴식 경험을 제공합니다.
+- **주요 특징**: 차분한 아이보리/골드 컬러, 심플하고 정돈된 레이아웃
 
-## Technical considerations
+### 3. AI (The Smart Navigator)
+**"똑똑한 동행"**
+- 사용자 맞춤형 정보와 스마트한 가이드를 제공하는 테마입니다.
+- AI 비서와 대화하듯 직관적인 인터페이스를 통해 필요한 정보를 빠르게 찾을 수 있습니다.
+- **주요 특징**: 블루/인디고 컬러의 신뢰감 있는 디자인, 대화형 UI 요소
 
-**Why use this over SvelteKit?**
+### 4. Luxury (Concept D)
+**"The Premium Experience"**
+- **다크 모드**를 기반으로 **골드 포인트**를 더해 최상의 럭셔리함을 강조한 테마입니다.
+- VIP 고객을 위한 프리미엄 라운지 같은 분위기를 연출합니다.
+- **주요 특징**:
+    - **Deep Black & Gold**: 몰입감 높은 다크 테마와 고급스러운 골드 그라데이션
+    - **통합 내비게이션**: 홈, 카지노, 지도, 마이페이지를 아우르는 전용 탭 바 제공
+    - **전용 기능**: 실시간 잭팟, 미션 현황, 상세 시설 지도 및 멤버십 관리 기능 포함
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+---
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+## 🛠️ 기술 스택
+- **Framework**: Svelte
+- **Build Tool**: Vite
+- **Language**: JavaScript (ES6+)
+- **Styling**: CSS Variables (Tokens), Vanilla CSS
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+## 🚀 실행 방법
 
-**Why include `.vscode/extensions.json`?**
+프로젝트를 로컬 환경에서 실행하려면 다음 명령어를 사용하세요.
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+```bash
+# 의존성 설치
+npm install
 
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+# 개발 서버 실행
+npm run dev
 ```
