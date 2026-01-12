@@ -11,8 +11,8 @@
 
     export let view = "main"; // 'main' | 'casino' | 'map' | 'my'
 
-    // Normalize 'd' to 'main'
-    $: activeView = view === "d" ? "main" : view;
+    // Normalize 'd' and 'home' to 'main'
+    $: activeView = view === "d" || view === "home" ? "main" : view;
 
     const dispatch = createEventDispatcher();
 
