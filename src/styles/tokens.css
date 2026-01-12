@@ -1,0 +1,244 @@
+/* ============================================
+   INSPIRE App Design Tokens
+   iPhone 15/16 Pro: 393x852px
+   ============================================ */
+
+:root {
+  /* ========== Viewport & Layout ========== */
+  --viewport-width: 393px;
+  --viewport-height: calc(100vh - 40px);
+
+  /* System UI Areas */
+  --status-bar-height: 54px;
+  --home-indicator-height: 34px;
+  --tab-bar-height: 83px;
+  --safe-area-top: 54px;
+  --safe-area-bottom: 34px;
+
+  /* Grid System */
+  --grid-columns: 4;
+  --grid-gutter: 16px;
+  --grid-margin-default: 20px;
+  --grid-margin-refined: 24px;
+
+  /* ========== Spacing Scale (4px base) ========== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ========== Typography Scale ========== */
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
+  --font-size-5xl: 40px;
+  --font-size-6xl: 48px;
+
+  /* Font Families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ========== Touch Targets ========== */
+  --touch-target-min: 44px;
+
+  /* ========== Border Radius ========== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* ========== Shadows ========== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25);
+
+  /* ========== Transitions ========== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-slower: 600ms ease;
+
+  /* ========== Z-Index Scale ========== */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+}
+
+/* ============================================
+   CONCEPT A: JOYFUL - The Digital Playground
+   Dark mode, neon gradients, cinematic
+   ============================================ */
+[data-theme="joyful"] {
+  /* Primary Colors - Aurora Gradient */
+  --color-primary: #FF6B9D;
+  --color-primary-light: #FF8FB3;
+  --color-primary-dark: #E04E7F;
+
+  /* Secondary Colors */
+  --color-secondary: #9B59FF;
+  --color-secondary-light: #B47AFF;
+  --color-secondary-dark: #7B3FDF;
+
+  /* Accent Colors */
+  --color-accent: #00D4FF;
+  --color-accent-alt: #FF4ECD;
+
+  /* Aurora Gradient */
+  --gradient-aurora: linear-gradient(135deg, #FF6B9D 0%, #9B59FF 50%, #00D4FF 100%);
+  --gradient-aurora-soft: linear-gradient(135deg, rgba(255, 107, 157, 0.6) 0%, rgba(155, 89, 255, 0.6) 50%, rgba(0, 212, 255, 0.6) 100%);
+
+  /* Background Colors */
+  --color-bg-primary: #0A0A0F;
+  --color-bg-secondary: #12121A;
+  --color-bg-tertiary: #1A1A25;
+  --color-bg-overlay: rgba(10, 10, 15, 0.85);
+
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.75);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-text-inverse: #0A0A0F;
+
+  /* Surface Colors (Glassmorphism) */
+  --color-surface: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.12);
+  --color-surface-active: rgba(255, 255, 255, 0.16);
+  --color-surface-border: rgba(255, 255, 255, 0.1);
+
+  /* Grid Margin */
+  --grid-margin: var(--grid-margin-default);
+}
+
+/* ============================================
+   CONCEPT B: REFINED - The Signature Collection
+   Minimal luxury, champagne gold, editorial
+   ============================================ */
+[data-theme="refined"] {
+  /* Primary Colors - Champagne Gold */
+  --color-primary: #C9A962;
+  --color-primary-light: #D9C08A;
+  --color-primary-dark: #A88B45;
+
+  /* Secondary Colors - Midnight Blue */
+  --color-secondary: #1A2642;
+  --color-secondary-light: #2A3A5C;
+  --color-secondary-dark: #0F1728;
+
+  /* Accent Colors */
+  --color-accent: #8B7355;
+  --color-accent-alt: #D4C4A8;
+
+  /* Elegant Gradient */
+  --gradient-gold: linear-gradient(135deg, #C9A962 0%, #D9C08A 50%, #C9A962 100%);
+  --gradient-subtle: linear-gradient(180deg, #FDFCFB 0%, #F5F3F0 100%);
+
+  /* Background Colors */
+  --color-bg-primary: #FDFCFB;
+  --color-bg-secondary: #F5F3F0;
+  --color-bg-tertiary: #EBE8E3;
+  --color-bg-overlay: rgba(253, 252, 251, 0.95);
+
+  /* Text Colors */
+  --color-text-primary: #1A2642;
+  --color-text-secondary: rgba(26, 38, 66, 0.75);
+  --color-text-tertiary: rgba(26, 38, 66, 0.5);
+  --color-text-inverse: #FDFCFB;
+
+  /* Surface Colors */
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8F7F5;
+  --color-surface-active: #F0EDE8;
+  --color-surface-border: rgba(26, 38, 66, 0.1);
+
+  /* Grid Margin - Wider for elegance */
+  --grid-margin: var(--grid-margin-refined);
+
+  /* Refined Shadows */
+  --shadow-refined: 0 2px 10px rgba(26, 38, 66, 0.06);
+  --shadow-refined-lg: 0 8px 30px rgba(26, 38, 66, 0.1);
+}
+
+/* ============================================
+   CONCEPT C: AI - The Smart Navigator
+   Clean minimal, glassmorphism, futuristic
+   ============================================ */
+[data-theme="ai"] {
+  /* Primary Colors - Tech Blue */
+  --color-primary: #4F8CFF;
+  --color-primary-light: #7AABFF;
+  --color-primary-dark: #3A6FD9;
+
+  /* Secondary Colors */
+  --color-secondary: #6366F1;
+  --color-secondary-light: #818CF8;
+  --color-secondary-dark: #4F46E5;
+
+  /* Accent Colors */
+  --color-accent: #22D3BB;
+  --color-accent-alt: #A78BFA;
+
+  /* AI Gradient */
+  --gradient-ai: linear-gradient(135deg, #4F8CFF 0%, #6366F1 100%);
+  --gradient-ai-soft: linear-gradient(135deg, rgba(79, 140, 255, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+
+  /* Background Colors */
+  --color-bg-primary: #F8FAFC;
+  --color-bg-secondary: #F1F5F9;
+  --color-bg-tertiary: #E2E8F0;
+  --color-bg-overlay: rgba(248, 250, 252, 0.9);
+
+  /* Text Colors */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: rgba(15, 23, 42, 0.7);
+  --color-text-tertiary: rgba(15, 23, 42, 0.5);
+  --color-text-inverse: #FFFFFF;
+
+  /* Surface Colors (Glassmorphism) */
+  --color-surface: rgba(255, 255, 255, 0.7);
+  --color-surface-hover: rgba(255, 255, 255, 0.85);
+  --color-surface-active: rgba(255, 255, 255, 0.95);
+  --color-surface-border: rgba(15, 23, 42, 0.08);
+
+  /* Grid Margin */
+  --grid-margin: var(--grid-margin-default);
+
+  /* Glassmorphism */
+  --glass-blur: 20px;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
