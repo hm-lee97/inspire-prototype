@@ -1,7 +1,12 @@
 <!-- DWallet.svelte - Minimalist Card Focus -->
 <script>
     import { fly, fade } from "svelte/transition";
-    import { ChevronLeft, ChevronRight, Fingerprint } from "lucide-svelte";
+    import {
+        ChevronLeft,
+        ChevronRight,
+        Fingerprint,
+        QrCode,
+    } from "lucide-svelte";
     import DBiometricAuth from "./DBiometricAuth.svelte";
 
     export let active = false;
@@ -85,12 +90,19 @@
             </button>
 
             <div class="voucher-card">
-                <div class="card-type {currentVoucher.type}"></div>
+                <div class="card-glow"></div>
                 <div class="card-content">
-                    <span class="count-badge">{currentVoucher.count}x</span>
-                    <h2>{currentVoucher.title}</h2>
-                    <p class="location">{currentVoucher.location}</p>
-                    <p class="expires">Expires: {currentVoucher.expires}</p>
+                    <span class="count-badge">x{currentVoucher.count}</span>
+                    <div class="card-info">
+                        <h2>{currentVoucher.title}</h2>
+                        <p class="location">{currentVoucher.location}</p>
+                    </div>
+                </div>
+                <div class="ticket-footer">
+                    <div class="barcode">
+                        <QrCode size={48} />
+                    </div>
+                    <p class="expires">Valid until {currentVoucher.expires}</p>
                 </div>
             </div>
 
@@ -183,75 +195,143 @@
     /* Voucher Card */
     .voucher-card {
         flex: 1;
-        max-width: 280px;
-        background: linear-gradient(
-            145deg,
-            var(--color-bg-secondary) 0%,
-            var(--color-bg-primary) 100%
-        );
-        border: 1px solid var(--color-surface-border);
-        border-radius: 0;
-        padding: var(--space-6);
-        min-height: 320px;
+        max-width: 320px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 0;
         display: flex;
         flex-direction: column;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .card-type {
+    /* Gold Gradient Border Effect */
+    .voucher-card::before {
+        content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
+        inset: 0;
+        border-radius: 24px;
+        padding: 1px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 40%,
+            transparent 60%,
+            rgba(212, 175, 55, 0.8) 100%
+        );
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
     }
 
-    .card-type.dining {
-        background: var(--color-primary);
-    }
-    .card-type.casino {
-        background: var(--color-primary-dark);
-    }
-    .card-type.spa {
-        background: var(--color-text-secondary);
+    .card-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle at center,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 60%
+        );
+        pointer-events: none;
     }
 
     .card-content {
         flex: 1;
+        padding: var(--space-6) var(--space-6);
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: center;
         text-align: center;
+        gap: var(--space-4);
     }
 
     .count-badge {
-        display: inline-block;
-        background: var(--color-primary);
-        color: var(--color-text-inverse);
-        font-size: var(--font-size-xs);
-        font-weight: 700;
-        padding: var(--space-1) var(--space-3);
-        border-radius: 0;
-        margin-bottom: var(--space-4);
-        align-self: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
     .voucher-card h2 {
-        font-size: var(--font-size-2xl);
-        font-weight: 600;
-        margin-bottom: var(--space-2);
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1.2;
+        color: #fff;
+        margin: 0;
+        background: linear-gradient(135deg, #fff 0%, #d4af37 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .location {
-        font-size: var(--font-size-sm);
-        color: var(--color-text-secondary);
-        margin-bottom: var(--space-4);
+        font-size: var(--font-size-md);
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.05em;
+    }
+
+    .ticket-footer {
+        background: rgba(0, 0, 0, 0.2);
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-3);
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    /* Ticket Notches */
+    .ticket-footer::before,
+    .ticket-footer::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        width: 20px;
+        height: 20px;
+        background: var(--color-bg-primary); /* Match app background */
+        border-radius: 50%;
+    }
+
+    .ticket-footer::before {
+        left: -10px;
+    }
+
+    .ticket-footer::after {
+        right: -10px;
+    }
+
+    .barcode {
+        background: #fff;
+        padding: 8px;
+        border-radius: 8px;
+        color: #000;
+        display: flex; /* Centering fix */
     }
 
     .expires {
         font-size: var(--font-size-xs);
-        color: var(--color-text-tertiary);
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
     }
 
     /* Action */
