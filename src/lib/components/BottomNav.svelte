@@ -95,7 +95,7 @@
     }
 
     .nav-item.active {
-        color: var(--color-text-primary);
-        background: rgba(255, 255, 255, 0.12);
+        color: #d4af37;
+        background: rgba(255, 255, 255, 0.1);
     }
 </style>

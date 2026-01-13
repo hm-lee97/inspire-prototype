@@ -141,12 +141,39 @@
         background: rgba(255, 255, 255, 0.06);
         backdrop-filter: blur(40px);
         -webkit-backdrop-filter: blur(40px);
-        border: 2px solid rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
         border-radius: var(--radius-md);
         padding: var(--space-6);
         position: relative;
         overflow: hidden;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        background-clip: padding-box;
+    }
+
+    /* Gold-White Gradient Border */
+    .membership-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(
+            205deg,
+            rgba(212, 175, 55, 0.24) 0%,
+            rgba(255, 255, 255, 0.3) 100%
+        );
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
     }
 
     /* Frost Texture Overlay */
