@@ -7,14 +7,14 @@
     import DMain from "./DMain.svelte";
     import DWallet from "./DWallet.svelte";
     import DSecurePass from "./DSecurePass.svelte";
-    import DCasino from "./DCasino.svelte";
     import DMy from "./DMy.svelte";
     import DNotifications from "./DNotifications.svelte";
+    import DReservations from "./DReservations.svelte";
+    import DSettings from "./DSettings.svelte";
 
     export let view = "main"; // 'main' | 'wallet' | 'pass' | 'casino' | 'my'
-
-    // Normalize 'd' and 'home' to 'main'
     $: activeView = view === "d" || view === "home" ? "main" : view;
+    $: isSubPage = ["reservations", "settings"].includes(activeView);
 
     const dispatch = createEventDispatcher();
 
@@ -23,7 +23,11 @@
     let unreadCount = 2;
 
     function handleBack() {
-        dispatch("back");
+        if (view === "reservations" || view === "settings") {
+            dispatch("navigate", { view: "my" });
+        } else {
+            dispatch("back");
+        }
     }
 
     function handleNav(event) {
@@ -47,41 +51,55 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <header class="d-header">
-        <button class="back-btn" on:click={handleBack} title="Exit to Selector">
-            <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-            >
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-        </button>
-        <div class="utility-menu">
+    {#if !isSubPage}
+        <header class="d-header">
             <button
-                class="util-btn notification-btn"
-                on:click={toggleNotifications}
+                class="back-btn"
+                on:click={handleBack}
+                title="Exit to Selector"
             >
-                <Bell size={20} />
-                {#if unreadCount > 0}
-                    <span class="badge"></span>
-                {/if}
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
             </button>
-        </div>
-    </header>
+            <div class="utility-menu">
+                <button
+                    class="util-btn notification-btn"
+                    on:click={toggleNotifications}
+                >
+                    <Bell size={20} />
+                    {#if unreadCount > 0}
+                        <span class="badge"></span>
+                    {/if}
+                </button>
+            </div>
+        </header>
+    {/if}
 
     <main class="d-content">
         <DMain active={activeView === "main"} on:navigate={handleNav} />
         <DWallet active={activeView === "wallet"} />
         <DSecurePass active={activeView === "pass"} />
-        <DCasino active={activeView === "casino"} />
-        <DMy active={activeView === "my"} />
+
+        <DMy active={activeView === "my"} on:navigate={handleNav} />
     </main>
 
-    <BottomNav {activeView} on:navigate={handleNav} />
+    <DReservations
+        active={activeView === "reservations"}
+        on:back={handleBack}
+    />
+    <DSettings active={activeView === "settings"} on:back={handleBack} />
+
+    {#if !isSubPage}
+        <BottomNav {activeView} on:navigate={handleNav} />
+    {/if}
 
     <!-- Notification Panel -->
     <DNotifications isOpen={showNotifications} on:close={closeNotifications} />

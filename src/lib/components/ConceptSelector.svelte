@@ -16,7 +16,6 @@
   const concepts = [
     {
       id: "joyful",
-      label: "A",
       title: "Joyful",
       subtitle: "The Digital Playground",
       description: "축제의 시작점",
@@ -26,7 +25,6 @@
     },
     {
       id: "refined",
-      label: "B",
       title: "Refined",
       subtitle: "The Signature Collection",
       description: "품격 있는 휴식",
@@ -38,7 +36,6 @@
     /*
     {
       id: "ai",
-      label: "C",
       title: "AI",
       subtitle: "The Smart Navigator",
       description: "똑똑한 동행",
@@ -49,7 +46,6 @@
     */
     {
       id: "d",
-      label: "D",
       title: "Luxury",
       subtitle: "The Premium Experience",
       description: "블랙 앤 화이트 + 미니멀리즘",
@@ -99,7 +95,6 @@
       >
         <div class="card-gradient-border"></div>
         <div class="card-content">
-          <span class="concept-label">{concept.label}</span>
           <h2 class="concept-title">{concept.title}</h2>
           <p class="concept-subtitle">{concept.subtitle}</p>
           <p class="concept-description">{concept.description}</p>
@@ -253,17 +248,6 @@
   .card-content {
     position: relative;
     z-index: 1;
-  }
-
-  .concept-label {
-    display: inline-block;
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.1em;
-    padding: 2px 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-2);
   }
 
   .concept-title {

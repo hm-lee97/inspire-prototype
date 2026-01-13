@@ -2,6 +2,9 @@
 <script>
     import { fade } from "svelte/transition";
     import { Eye, EyeOff, ChevronRight, LogOut } from "lucide-svelte";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let active = false;
 
@@ -12,6 +15,10 @@
 
     function toggleInfo() {
         showInfo = !showInfo;
+    }
+
+    function navigate(view) {
+        dispatch("navigate", { view });
     }
 </script>
 
@@ -40,11 +47,11 @@
 
         <!-- Menu -->
         <section class="menu-section">
-            <button class="menu-item">
+            <button class="menu-item" on:click={() => navigate("reservations")}>
                 <span>Reservations</span>
                 <ChevronRight size={18} />
             </button>
-            <button class="menu-item">
+            <button class="menu-item" on:click={() => navigate("settings")}>
                 <span>Settings</span>
                 <ChevronRight size={18} />
             </button>

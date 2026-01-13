@@ -57,7 +57,7 @@
       <div class="view" in:fly={{ x: 100, duration: 400 }}>
         <AIApp on:back={goBack} />
       </div>
-    {:else if ["d", "main", "wallet", "pass", "casino", "my", "home"].includes(currentView)}
+    {:else if ["d", "main", "wallet", "pass", "casino", "my", "home", "reservations", "settings"].includes(currentView)}
       <div class="view" in:fly={{ x: 100, duration: 400 }}>
         <DApp view={currentView} on:back={goBack} on:navigate={handleNav} />
       </div>

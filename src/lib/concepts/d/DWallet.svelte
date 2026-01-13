@@ -2,6 +2,7 @@
 <script>
     import { fly, fade } from "svelte/transition";
     import { ChevronLeft, ChevronRight, Fingerprint } from "lucide-svelte";
+    import DBiometricAuth from "./DBiometricAuth.svelte";
 
     export let active = false;
 
@@ -44,6 +45,25 @@
     }
 
     $: currentVoucher = vouchers[currentIndex];
+
+    // Auth State
+    let isAuthenticating = false;
+
+    function handleUseVoucher() {
+        isAuthenticating = true;
+    }
+
+    function handleAuthComplete(event) {
+        if (event.detail.success) {
+            // In a real app, this would consume the voucher
+            isAuthenticating = false;
+            alert("Voucher successfully used!");
+        }
+    }
+
+    function handleAuthCancel() {
+        isAuthenticating = false;
+    }
 </script>
 
 {#if active}
@@ -85,12 +105,19 @@
 
         <!-- Use Button -->
         <section class="action-section">
-            <button class="use-btn">
+            <button class="use-btn" on:click={handleUseVoucher}>
                 <Fingerprint size={20} />
                 <span>USE VOUCHER</span>
             </button>
             <p class="hint">Biometric authentication required</p>
         </section>
+
+        <!-- Biometric Auth Overlay -->
+        <DBiometricAuth
+            active={isAuthenticating}
+            on:complete={handleAuthComplete}
+            on:cancel={handleAuthCancel}
+        />
     </div>
 {/if}
 
