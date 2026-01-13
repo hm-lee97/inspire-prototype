@@ -15,8 +15,8 @@
   import AIApp from "./lib/concepts/ai/AIApp.svelte";
   import DApp from "./lib/concepts/d/DApp.svelte";
 
-  let currentView = "selector"; // 'selector' | 'joyful' | 'refined' | 'ai'
-  let currentTheme = "joyful";
+  let currentView = "d"; // 'selector' | 'joyful' | 'refined' | 'ai'
+  let currentTheme = "d";
 
   function handleConceptSelect(event) {
     const concept = event.detail.concept;
