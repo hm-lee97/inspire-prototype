@@ -2,6 +2,10 @@
 <script>
     import { fly, fade } from "svelte/transition";
     import { Eye, EyeOff, ChevronRight } from "lucide-svelte";
+    import { createEventDispatcher } from "svelte";
+    import DBenefitsSheet from "./DBenefitsSheet.svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let active = false;
 
@@ -9,6 +13,9 @@
     let showPoints = false;
     const maskedPoints = "P ****,***";
     const realPoints = "P 1,250,500";
+
+    // Benefits sheet
+    let showBenefits = false;
 
     // User data
     const user = {
@@ -20,63 +27,75 @@
     function togglePoints() {
         showPoints = !showPoints;
     }
+
+    function openBenefits() {
+        showBenefits = true;
+    }
+
+    function closeBenefits() {
+        showBenefits = false;
+    }
 </script>
 
 {#if active}
     <div class="d-main" in:fade={{ duration: 400 }}>
         <!-- Welcome Section -->
-        <section class="welcome">
+        <section class="welcome animate-entry delay-1">
             <p class="greeting">Welcome back,</p>
             <h1 class="name">{user.name}</h1>
         </section>
 
         <!-- Unified Membership Card -->
-        <section class="card-section">
-            <div class="membership-card">
-                <div class="card-inner">
-                    <!-- Tiers -->
-                    <div class="tiers">
-                        <div class="tier resort">
-                            <span class="tier-label">RESORT</span>
-                            <span class="tier-value">{user.resortTier}</span>
+        <section class="card-section animate-entry delay-1">
+            <div class="card-perspective">
+                <div class="membership-card animate-card-reveal">
+                    <div class="card-inner">
+                        <!-- Tiers -->
+                        <div class="tiers">
+                            <div class="tier resort">
+                                <span class="tier-label">RESORT</span>
+                                <span class="tier-value">{user.resortTier}</span
+                                >
+                            </div>
+                            <div class="tier-divider"></div>
+                            <div class="tier casino">
+                                <span class="tier-label">CASINO</span>
+                                <span class="tier-value">{user.casinoTier}</span
+                                >
+                            </div>
                         </div>
-                        <div class="tier-divider"></div>
-                        <div class="tier casino">
-                            <span class="tier-label">CASINO</span>
-                            <span class="tier-value">{user.casinoTier}</span>
+
+                        <!-- Points -->
+                        <div class="points-row">
+                            <div class="points-info">
+                                <span class="points-label">MY POINTS</span>
+                                <span class="points-value"
+                                    >{showPoints
+                                        ? realPoints
+                                        : maskedPoints}</span
+                                >
+                            </div>
+                            <button class="toggle-btn" on:click={togglePoints}>
+                                {#if showPoints}
+                                    <EyeOff size={20} />
+                                {:else}
+                                    <Eye size={20} />
+                                {/if}
+                            </button>
                         </div>
                     </div>
-
-                    <!-- Points -->
-                    <div class="points-row">
-                        <div class="points-info">
-                            <span class="points-label">보유 포인트</span>
-                            <span class="points-value"
-                                >{showPoints ? realPoints : maskedPoints}</span
-                            >
-                        </div>
-                        <button class="toggle-btn" on:click={togglePoints}>
-                            {#if showPoints}
-                                <EyeOff size={20} />
-                            {:else}
-                                <Eye size={20} />
-                            {/if}
-                        </button>
-                    </div>
-
-                    <!-- Card Shimmer -->
-                    <div class="shimmer"></div>
                 </div>
             </div>
-        </section>
 
-        <!-- CTA -->
-        <section class="cta-section">
-            <button class="cta-btn">
-                <span>PLATINUM 전용 혜택 확인</span>
-                <ChevronRight size={18} />
+            <!-- Benefits Link -->
+            <button class="benefits-link" on:click={openBenefits}>
+                <span>View all benefits</span>
+                <ChevronRight size={14} />
             </button>
         </section>
+
+        <!-- Benefits Bottom Sheet -->
+        <DBenefitsSheet isOpen={showBenefits} on:close={closeBenefits} />
     </div>
 {/if}
 
@@ -100,19 +119,16 @@
     .greeting {
         font-size: var(--font-size-sm);
         color: var(--color-text-secondary);
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
-        margin-bottom: var(--space-2);
     }
 
     .name {
         font-size: var(--font-size-4xl);
         font-weight: 300;
-        letter-spacing: 0.05em;
-        background: var(--gradient-gold);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        letter-spacing: 0.005em;
+        text-transform: uppercase;
+        color: var(--color-text-primary);
     }
 
     /* Card Section */
@@ -122,15 +138,28 @@
     }
 
     .membership-card {
-        background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        border-radius: var(--radius-2xl);
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 2px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
         padding: var(--space-6);
         position: relative;
         overflow: hidden;
-        box-shadow:
-            0 20px 40px -15px rgba(0, 0, 0, 0.5),
-            0 0 0 1px rgba(212, 175, 55, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Frost Texture Overlay */
+    .membership-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: inherit;
     }
 
     .card-inner {
@@ -154,7 +183,7 @@
     .tier-label {
         display: block;
         font-size: 10px;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.08em;
         color: var(--color-text-tertiary);
         margin-bottom: var(--space-1);
     }
@@ -162,7 +191,7 @@
     .tier-value {
         font-size: var(--font-size-lg);
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
     }
 
     .tier.resort .tier-value {
@@ -170,7 +199,7 @@
     }
 
     .tier.casino .tier-value {
-        color: #fff;
+        color: var(--color-text-primary);
     }
 
     .tier-divider {
@@ -203,7 +232,7 @@
     }
 
     .toggle-btn {
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--color-surface);
         border: none;
         color: var(--color-text-secondary);
         width: 44px;
@@ -220,43 +249,68 @@
         background: rgba(255, 255, 255, 0.1);
     }
 
-    /* Shimmer */
-    .shimmer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            transparent 0%,
-            rgba(212, 175, 55, 0.03) 50%,
-            transparent 100%
-        );
-        pointer-events: none;
-    }
-
-    /* CTA */
-    .cta-section {
-        text-align: center;
-    }
-
-    .cta-btn {
-        display: inline-flex;
+    /* Benefits Link */
+    .benefits-link {
+        display: flex;
+        width: 100%;
         align-items: center;
-        gap: var(--space-2);
-        background: transparent;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        color: var(--color-primary);
-        padding: var(--space-3) var(--space-5);
-        border-radius: var(--radius-full);
+        justify-content: center;
+        gap: var(--space-1);
+        background: none;
+        border: none;
+        color: var(--color-text-secondary);
         font-size: var(--font-size-sm);
         letter-spacing: 0.05em;
         cursor: pointer;
-        transition: all 0.2s;
+        margin-top: var(--space-4);
+        transition: color 0.2s;
     }
 
-    .cta-btn:active {
-        background: rgba(212, 175, 55, 0.1);
+    .benefits-link:hover {
+        color: var(--color-text-primary);
+    }
+
+    /* Entry Animation */
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-entry {
+        animation: slideUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+
+    .delay-1 {
+        animation-delay: 0.1s;
+    }
+
+    /* 3D Card Reveal Animation (Chanel-inspired) */
+    .card-perspective {
+        perspective: 1000px;
+    }
+
+    @keyframes cardReveal {
+        0% {
+            opacity: 0;
+            transform: rotateY(-45deg) translateZ(-80px);
+        }
+        100% {
+            opacity: 1;
+            transform: rotateY(0deg) translateZ(0);
+        }
+    }
+
+    .animate-card-reveal {
+        animation: cardReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: 0.15s;
+        opacity: 0;
+        transform-style: preserve-3d;
     }
 </style>

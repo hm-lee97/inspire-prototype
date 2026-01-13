@@ -9,7 +9,7 @@
     const vouchers = [
         {
             id: 1,
-            title: "무료 조식권",
+            title: "Complimentary Breakfast",
             location: "Chef's Kitchen",
             count: 2,
             expires: "2025.03.31",
@@ -17,7 +17,7 @@
         },
         {
             id: 2,
-            title: "카지노 VIP 식사권",
+            title: "Casino VIP Dining",
             location: "VIP Lounge",
             count: 1,
             expires: "2025.02.28",
@@ -25,7 +25,7 @@
         },
         {
             id: 3,
-            title: "스파 이용권",
+            title: "Spa Voucher",
             location: "Inspire Spa",
             count: 1,
             expires: "2025.06.30",
@@ -67,10 +67,10 @@
             <div class="voucher-card">
                 <div class="card-type {currentVoucher.type}"></div>
                 <div class="card-content">
-                    <span class="count-badge">{currentVoucher.count}매</span>
+                    <span class="count-badge">{currentVoucher.count}x</span>
                     <h2>{currentVoucher.title}</h2>
                     <p class="location">{currentVoucher.location}</p>
-                    <p class="expires">유효기간: {currentVoucher.expires}</p>
+                    <p class="expires">Expires: {currentVoucher.expires}</p>
                 </div>
             </div>
 
@@ -87,9 +87,9 @@
         <section class="action-section">
             <button class="use-btn">
                 <Fingerprint size={20} />
-                <span>바우처 사용하기</span>
+                <span>USE VOUCHER</span>
             </button>
-            <p class="hint">생체 인증 후 사용 가능</p>
+            <p class="hint">Biometric authentication required</p>
         </section>
     </div>
 {/if}
@@ -112,7 +112,7 @@
     .header h1 {
         font-size: var(--font-size-lg);
         font-weight: 600;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.08em;
         margin-bottom: var(--space-2);
     }
 
@@ -131,7 +131,7 @@
     }
 
     .nav-btn {
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--color-surface);
         border: none;
         color: var(--color-text-secondary);
         width: 44px;
@@ -157,9 +157,13 @@
     .voucher-card {
         flex: 1;
         max-width: 280px;
-        background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        border-radius: var(--radius-2xl);
+        background: linear-gradient(
+            145deg,
+            var(--color-bg-secondary) 0%,
+            var(--color-bg-primary) 100%
+        );
+        border: 1px solid var(--color-surface-border);
+        border-radius: 0;
         padding: var(--space-6);
         min-height: 320px;
         display: flex;
@@ -180,10 +184,10 @@
         background: var(--color-primary);
     }
     .card-type.casino {
-        background: #e74c3c;
+        background: var(--color-primary-dark);
     }
     .card-type.spa {
-        background: #3498db;
+        background: var(--color-text-secondary);
     }
 
     .card-content {
@@ -197,11 +201,11 @@
     .count-badge {
         display: inline-block;
         background: var(--color-primary);
-        color: #000;
+        color: var(--color-text-inverse);
         font-size: var(--font-size-xs);
         font-weight: 700;
         padding: var(--space-1) var(--space-3);
-        border-radius: var(--radius-full);
+        border-radius: 0;
         margin-bottom: var(--space-4);
         align-self: center;
     }
@@ -234,10 +238,10 @@
         align-items: center;
         gap: var(--space-2);
         background: var(--color-primary);
-        color: #000;
+        color: var(--color-text-inverse);
         border: none;
         padding: var(--space-4) var(--space-6);
-        border-radius: var(--radius-full);
+        border-radius: 0;
         font-size: var(--font-size-base);
         font-weight: 600;
         cursor: pointer;

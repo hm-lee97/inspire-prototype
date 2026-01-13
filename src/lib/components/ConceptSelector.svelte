@@ -52,9 +52,9 @@
       label: "D",
       title: "Luxury",
       subtitle: "The Premium Experience",
-      description: "다크 모드 + 골드 포인트",
-      gradient: "linear-gradient(135deg, #000000 0%, #d4af37 100%)",
-      bgColor: "#0A0A0F",
+      description: "블랙 앤 화이트 + 미니멀리즘",
+      gradient: "linear-gradient(135deg, #FFFFFF 0%, #0A0A14 100%)",
+      bgColor: "#FFFFFF",
       light: false,
     },
   ];

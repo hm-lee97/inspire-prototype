@@ -48,7 +48,7 @@
   --font-size-6xl: 48px;
 
   /* Font Families */
-  --font-sans: 'Noto Sans', sans-serif;
+  --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
 
@@ -244,46 +244,53 @@
 }
 
 /* ============================================
-   CONCEPT D: LUXURY - The Premium Experience
-   Deep Dark mode, gold accents, exclusive
+   CONCEPT D: LUXURY - Navy-White Elegance
+   Inspired by Chanel "Bleu de Chanel"
+   Deep midnight navy, white accents, minimal
    ============================================ */
 [data-theme="d"] {
-  /* Primary Colors - Luxury Gold */
-  --color-primary: #d4af37;
-  --color-primary-light: #e5c75c;
-  --color-primary-dark: #b8942d;
+  /* Primary Colors - Clean White Accent */
+  --color-primary: #FFFFFF;
+  --color-primary-light: #F5F5F5;
+  --color-primary-dark: #E0E0E0;
 
-  /* Secondary Colors - Dark Gray */
-  --color-secondary: #2C2C35;
-  --color-secondary-light: #3D3D48;
-  --color-secondary-dark: #1A1A20;
+  /* Secondary Colors - Deep Midnight Navy */
+  --color-secondary: #0A0A14;
+  --color-secondary-light: #1A1A2E;
+  --color-secondary-dark: #050508;
 
   /* Accent Colors */
-  --color-accent: #FFFFFF;
-  --color-accent-alt: #8B7355;
+  --color-accent: #1E3A5F;
+  /* Chanel Blue glow */
+  --color-accent-alt: #C9A962;
+  /* Subtle gold for minimal highlights */
 
-  /* Luxury Gradient */
-  --gradient-d: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #d4af37 100%);
+  /* Luxury Gradients */
+  --gradient-d: linear-gradient(180deg, #0A0A14 0%, #12121F 100%);
+  --gradient-gold: linear-gradient(135deg, #FFFFFF 0%, #E8E8E8 50%, #FFFFFF 100%);
+  --gradient-navy: linear-gradient(145deg, #12121F 0%, #0A0A14 100%);
 
   /* Background Colors */
-  --color-bg-primary: #000000;
-  --color-bg-secondary: #1a1a1a;
-  --color-bg-tertiary: #15151D;
-  --color-bg-overlay: rgba(0, 0, 0, 0.85);
+  --color-bg-primary: #0A0A14;
+  --color-bg-secondary: #12121F;
+  --color-bg-tertiary: #1A1A2E;
+  --color-bg-overlay: rgba(10, 10, 20, 0.9);
 
   /* Text Colors */
   --color-text-primary: #FFFFFF;
   --color-text-secondary: rgba(255, 255, 255, 0.7);
   --color-text-tertiary: rgba(255, 255, 255, 0.5);
-  --color-text-inverse: #000000;
+  --color-text-inverse: #0A0A14;
 
   /* Surface Colors */
   --color-surface: rgba(255, 255, 255, 0.05);
   --color-surface-hover: rgba(255, 255, 255, 0.1);
   --color-surface-active: rgba(255, 255, 255, 0.15);
-  --color-surface-border: rgba(212, 175, 55, 0.3);
+  --color-surface-border: rgba(255, 255, 255, 0.15);
 
   /* Grid Margin */
   --grid-margin: var(--grid-margin-default);
+
+  /* Font Override - Archivo for D concept */
+  --font-sans: 'Archivo', sans-serif;
 }

@@ -1,4 +1,4 @@
-<!-- BottomNav.svelte -->
+<!-- BottomNav.svelte - Floating Chip Design -->
 <script>
     import { createEventDispatcher } from "svelte";
     import { Home, Wallet, QrCode, User } from "lucide-svelte";
@@ -12,77 +12,90 @@
     }
 </script>
 
-<div class="bottom-nav">
-    <button
-        class="nav-item"
-        class:active={activeView === "home" || activeView === "main"}
-        on:click={() => navigate("home")}
-        title="Home"
-    >
-        <Home size={22} />
-        <span>홈</span>
-    </button>
-    <button
-        class="nav-item"
-        class:active={activeView === "wallet"}
-        on:click={() => navigate("wallet")}
-        title="Wallet"
-    >
-        <Wallet size={22} />
-        <span>혜택</span>
-    </button>
-    <button
-        class="nav-item"
-        class:active={activeView === "pass"}
-        on:click={() => navigate("pass")}
-        title="Pass"
-    >
-        <QrCode size={22} />
-        <span>패스</span>
-    </button>
-    <button
-        class="nav-item"
-        class:active={activeView === "my"}
-        on:click={() => navigate("my")}
-        title="My"
-    >
-        <User size={22} />
-        <span>MY</span>
-    </button>
+<div class="nav-container">
+    <div class="bottom-nav">
+        <button
+            class="nav-item"
+            class:active={activeView === "home" || activeView === "main"}
+            on:click={() => navigate("home")}
+            title="Home"
+        >
+            <Home size={20} />
+        </button>
+        <button
+            class="nav-item"
+            class:active={activeView === "wallet"}
+            on:click={() => navigate("wallet")}
+            title="Benefits"
+        >
+            <Wallet size={20} />
+        </button>
+        <button
+            class="nav-item"
+            class:active={activeView === "pass"}
+            on:click={() => navigate("pass")}
+            title="Pass"
+        >
+            <QrCode size={20} />
+        </button>
+        <button
+            class="nav-item"
+            class:active={activeView === "my"}
+            on:click={() => navigate("my")}
+            title="My"
+        >
+            <User size={20} />
+        </button>
+    </div>
 </div>
 
 <style>
-    .bottom-nav {
-        flex-shrink: 0;
-        height: var(--tab-bar-height);
+    .nav-container {
+        position: absolute;
+        bottom: calc(var(--safe-area-bottom) + 10px);
+        left: 0;
+        right: 0;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        z-index: 50;
+        pointer-events: none;
+    }
+
+    .bottom-nav {
+        display: flex;
         align-items: center;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 10;
+        gap: var(--space-1);
+        padding: var(--space-2) var(--space-3);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        pointer-events: auto;
     }
 
     .nav-item {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 2px;
-        background: none;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: transparent;
         border: none;
+        border-radius: 50%;
         color: rgba(255, 255, 255, 0.5);
-        padding: var(--space-2);
         cursor: pointer;
-        transition: color 0.2s;
+        transition: all 0.2s ease;
     }
 
-    .nav-item span {
-        font-size: 10px;
+    .nav-item:hover {
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.05);
     }
 
-    .nav-item:hover,
     .nav-item.active {
-        color: var(--color-primary);
+        color: var(--color-text-primary);
+        background: rgba(255, 255, 255, 0.12);
     }
 </style>

@@ -34,18 +34,18 @@
                         {/if}
                     </button>
                 </div>
-                <p class="tier">DIAMOND MEMBER</p>
+                <p class="tier">PLATINUM MEMBER</p>
             </div>
         </section>
 
         <!-- Menu -->
         <section class="menu-section">
             <button class="menu-item">
-                <span>예약 내역</span>
+                <span>Reservations</span>
                 <ChevronRight size={18} />
             </button>
             <button class="menu-item">
-                <span>설정</span>
+                <span>Settings</span>
                 <ChevronRight size={18} />
             </button>
         </section>
@@ -53,7 +53,7 @@
         <!-- Sign Out -->
         <button class="sign-out">
             <LogOut size={16} />
-            <span>로그아웃</span>
+            <span>SIGN OUT</span>
         </button>
     </div>
 {/if}
@@ -82,25 +82,24 @@
     .avatar {
         width: 80px;
         height: 80px;
-        background: linear-gradient(
-            135deg,
-            var(--color-primary) 0%,
-            #b8942d 100%
-        );
-        border-radius: 50%;
+        background: var(--color-primary);
+        border-radius: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto var(--space-4);
         font-size: var(--font-size-2xl);
         font-weight: 600;
-        color: #000;
+        color: var(--color-text-inverse);
+        letter-spacing: 0.05em;
     }
 
     .name {
         font-size: var(--font-size-2xl);
         font-weight: 300;
         margin-bottom: var(--space-3);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
     }
 
     .id-row {
@@ -128,7 +127,7 @@
     .tier {
         font-size: var(--font-size-xs);
         color: var(--color-primary);
-        letter-spacing: 0.15em;
+        letter-spacing: 0.08em;
     }
 
     /* Menu */
@@ -167,10 +166,12 @@
         justify-content: center;
         gap: var(--space-2);
         background: none;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--color-surface-border);
         color: var(--color-text-secondary);
         padding: var(--space-3);
-        border-radius: var(--radius-full);
+        border-radius: 0;
         cursor: pointer;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
     }
 </style>

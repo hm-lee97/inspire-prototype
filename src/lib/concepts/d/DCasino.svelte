@@ -13,30 +13,30 @@
         <div class="jackpot-card">
             <span class="label">LIVE JACKPOT</span>
             <div class="amount">₩ 4,823,940,200</div>
-            <div class="timer">최근 당첨: 12분 전</div>
+            <div class="timer">Last Winner: 12 min ago</div>
         </div>
 
         <!-- Points Summary -->
         <div class="points-summary">
             <div class="point-item">
-                <span class="label">오늘의 승리</span>
+                <span class="label">TODAY'S WIN</span>
                 <span class="value win">+ ₩ 2,500,000</span>
             </div>
             <div class="divider"></div>
             <div class="point-item">
-                <span class="label">마이 포인트</span>
+                <span class="label">MY POINTS</span>
                 <span class="value">12,500 P</span>
             </div>
         </div>
 
         <!-- Missions -->
-        <h3 class="subtitle">오늘의 미션</h3>
+        <h3 class="subtitle">TODAY'S MISSIONS</h3>
         <div class="mission-list">
             <div class="mission-item completed">
                 <div class="check">✓</div>
                 <div class="info">
                     <div class="title-row">
-                        <span class="title">일일 출석 체크</span>
+                        <span class="title">Daily Check-in</span>
                         <span class="reward">100 P</span>
                     </div>
                     <div class="progress-bar-bg">
@@ -51,13 +51,13 @@
                 <div class="check empty"></div>
                 <div class="info">
                     <div class="title-row">
-                        <span class="title">슬롯 게임 3회 플레이</span>
+                        <span class="title">Play 3 Slot Games</span>
                         <span class="reward">500 P</span>
                     </div>
                     <div class="progress-bar-bg">
                         <div class="progress-bar-fill" style="width: 33%"></div>
                     </div>
-                    <span class="progress-text">1/3 완료</span>
+                    <span class="progress-text">1/3 completed</span>
                 </div>
             </div>
         </div>
@@ -76,28 +76,23 @@
         font-size: var(--font-size-2xl);
         font-weight: 700;
         margin-bottom: var(--space-4);
-        letter-spacing: 2px;
+        letter-spacing: 1px;
     }
 
     .jackpot-card {
-        background: linear-gradient(
-            135deg,
-            #b8942d 0%,
-            #f3e5ab 50%,
-            #b8942d 100%
-        );
-        border-radius: var(--radius-xl);
+        background: var(--color-primary);
+        border-radius: 0;
         padding: var(--space-5);
         text-align: center;
-        color: #000;
-        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        color: var(--color-text-inverse);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-bottom: var(--space-6);
     }
 
     .jackpot-card .label {
         font-size: var(--font-size-sm);
         font-weight: 700;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         opacity: 0.8;
     }
 
@@ -176,7 +171,7 @@
         height: 24px;
         border-radius: 50%;
         background: var(--color-primary);
-        color: #000;
+        color: var(--color-text-inverse);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -216,7 +211,7 @@
     .progress-bar-bg {
         width: 100%;
         height: 4px;
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--color-surface-border);
         border-radius: 2px;
         overflow: hidden;
     }

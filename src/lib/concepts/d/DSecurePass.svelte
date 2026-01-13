@@ -55,13 +55,13 @@
                         style="width: {progressPercent}%"
                     ></div>
                 </div>
-                <p>{timeLeft}초 후 자동 갱신</p>
+                <p>Auto-refresh in {timeLeft}s</p>
             </div>
         </section>
 
         <!-- Usage -->
         <section class="usage">
-            <p>카지노 입장 · POS 결제 · VIP 체크인</p>
+            <p>Casino Entry · POS Payment · VIP Check-in</p>
         </section>
     </div>
 {/if}
@@ -88,7 +88,7 @@
     .header h1 {
         font-size: var(--font-size-sm);
         font-weight: 600;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.1em;
         color: var(--color-text-secondary);
     }
 
@@ -106,7 +106,7 @@
         background: #fff;
         width: 200px;
         height: 200px;
-        border-radius: var(--radius-xl);
+        border-radius: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -124,7 +124,7 @@
         right: 12px;
         font-size: 8px;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
         color: rgba(0, 0, 0, 0.2);
     }
 
@@ -136,7 +136,7 @@
     .timer-bar {
         width: 200px;
         height: 3px;
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--color-surface-border);
         border-radius: 2px;
         overflow: hidden;
         margin-bottom: var(--space-2);
@@ -157,6 +157,6 @@
     .usage p {
         font-size: var(--font-size-sm);
         color: var(--color-text-secondary);
-        letter-spacing: 0.05em;
+        letter-spacing: 0.02em;
     }
 </style>
