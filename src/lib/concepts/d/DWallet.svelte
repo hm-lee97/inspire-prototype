@@ -295,7 +295,8 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding: var(--space-6) 0;
+        justify-content: center;
+        padding: 0 0 var(--space-6) 0;
         color: var(--color-text-primary);
         overflow: hidden;
     }
@@ -311,7 +312,6 @@
         font-size: var(--font-size-lg);
         font-weight: 600;
         letter-spacing: 0.08em;
-        margin-bottom: var(--space-2);
     }
 
     .header .count {
@@ -323,6 +323,7 @@
     .carousel-stage {
         flex: 1;
         width: 100%;
+        max-height: 400px;
         perspective: 800px; /* High perspective for 3D depth */
         position: relative;
         display: flex;
@@ -330,7 +331,7 @@
         justify-content: center;
         cursor: grab;
         touch-action: none;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .carousel-stage:active {
@@ -479,7 +480,7 @@
         position: relative;
     }
 
-    /* Ticket Notches */
+    /* Ticket Notches
     .ticket-footer::before,
     .ticket-footer::after {
         content: "";
@@ -489,9 +490,9 @@
         height: 20px;
         background: var(--color-bg-primary);
         border-radius: 50%;
-        /* Ensure simple color matching since parent might be transparent in 3D but here we assume dark bg */
         background-color: #000;
     }
+    */
 
     .ticket-footer::before {
         left: -10px;

@@ -53,7 +53,7 @@
 
     {#if !isSubPage}
         <header class="d-header">
-            <button
+            <!-- <button
                 class="back-btn"
                 on:click={handleBack}
                 title="Exit to Selector"
@@ -68,7 +68,7 @@
                 >
                     <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
-            </button>
+            </button> -->
             <div class="utility-menu">
                 <button
                     class="util-btn notification-btn"
@@ -120,9 +120,9 @@
     .d-header {
         flex-shrink: 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        padding: calc(var(--safe-area-top) + 10px) 20px 10px;
+        padding: calc(var(--safe-area-top) + 10px) 20px 0;
         z-index: 10;
     }
 
