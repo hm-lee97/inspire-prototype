@@ -138,7 +138,7 @@
     }
 
     .membership-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(40px);
         -webkit-backdrop-filter: blur(40px);
         border: 1px solid transparent;

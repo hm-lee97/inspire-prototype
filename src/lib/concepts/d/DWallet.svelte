@@ -221,7 +221,7 @@
                     <!-- Config -->
                     {@const RADIUS = 1500}
                     <!-- Large radius for subtle curve -->
-                    {@const ANGLE_STEP = 9}
+                    {@const ANGLE_STEP = 8.6}
                     <!-- Degrees per card -->
 
                     <!-- Calculate Angle -->

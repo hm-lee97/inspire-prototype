@@ -112,6 +112,7 @@
         justify-content: center;
         margin-bottom: var(--space-6);
         box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+        border-radius: var(--radius-md);
     }
 
     .qr-code {

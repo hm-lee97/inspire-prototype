@@ -90,7 +90,7 @@
         width: 80px;
         height: 80px;
         background: var(--color-primary);
-        border-radius: 0;
+        border-radius: var(--radius-sm);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -153,7 +153,7 @@
         border: none;
         color: var(--color-text-primary);
         padding: var(--space-4);
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius-md);
         cursor: pointer;
         transition: background 0.2s;
     }
@@ -176,7 +176,7 @@
         border: 1px solid var(--color-surface-border);
         color: var(--color-text-secondary);
         padding: var(--space-3);
-        border-radius: 0;
+        border-radius: var(--radius-md);
         cursor: pointer;
         letter-spacing: 0.05em;
         text-transform: uppercase;
