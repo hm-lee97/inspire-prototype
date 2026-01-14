@@ -6,7 +6,7 @@
 :root {
   /* ========== Viewport & Layout ========== */
   --viewport-width: 393px;
-  --viewport-height: calc(100vh - 80px);
+  --viewport-height: calc(100svh - 20px);
 
   /* System UI Areas */
   --status-bar-height: 54px;

@@ -260,7 +260,7 @@
 
                             <div class="ticket-footer">
                                 <div class="barcode">
-                                    <QrCode size={48} />
+                                    <QrCode size={36} />
                                 </div>
                                 <p class="expires">
                                     Until {voucher.expires}
@@ -350,14 +350,13 @@
 
     .card-wrapper {
         position: absolute;
-        width: 200px; /* Reduced width */
-        height: 300px; /* Reduced height */
+        width: 190px;
+        height: 260px;
         transform-style: preserve-3d;
-        /* Center anchor */
         left: 50%;
         top: 50%;
-        margin-left: -100px; /* Half width */
-        margin-top: -150px; /* Half height */
+        margin-left: -95px;
+        margin-top: -130px;
 
         transition: opacity 0.1s;
         will-change: transform;
@@ -439,7 +438,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: var(--space-4);
+        gap: var(--space-3);
     }
 
     .count-badge {
@@ -461,6 +460,7 @@
         line-height: 1.2;
         color: #fff;
         margin: 0;
+        letter-spacing: -0.2px;
     }
 
     .location {
@@ -504,8 +504,8 @@
 
     .barcode {
         background: #fff;
-        padding: 6px;
-        border-radius: 6px;
+        padding: 4px;
+        border-radius: 4px;
         display: flex;
         color: #000;
     }

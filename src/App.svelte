@@ -68,7 +68,7 @@
 <style>
   .app-container {
     width: 100%;
-    min-height: 100vh;
+    max-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;

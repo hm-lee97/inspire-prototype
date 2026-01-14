@@ -185,7 +185,7 @@
     .blob {
         position: absolute;
         border-radius: 50%;
-        filter: blur(88px);
+        filter: blur(80px);
         opacity: 0.4;
     }
 
@@ -198,11 +198,11 @@
     }
 
     .blob-2 {
-        width: 300px;
-        height: 300px;
+        width: 460px;
+        height: 460px;
         background: #d4af37;
-        bottom: 120px;
-        left: -60px;
-        opacity: 0.12;
+        bottom: 130px;
+        left: -140px;
+        opacity: 0.14;
     }
 </style>

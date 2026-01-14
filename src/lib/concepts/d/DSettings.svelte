@@ -156,7 +156,7 @@
         align-items: center;
         justify-content: space-between;
         padding: calc(var(--safe-area-top) + 10px) 20px 20px;
-        background: rgba(14, 28, 48, 0.95);
+        background: rgba(14, 28, 48, 0.5);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }

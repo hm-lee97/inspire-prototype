@@ -138,10 +138,10 @@
     }
 
     .membership-card {
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(40px);
         -webkit-backdrop-filter: blur(40px);
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         border-radius: var(--radius-md);
         padding: var(--space-6);
         position: relative;
@@ -159,11 +159,11 @@
         right: 0;
         bottom: 0;
         border-radius: inherit;
-        padding: 2px;
+        padding: 1px;
         background: linear-gradient(
             205deg,
-            rgba(212, 175, 55, 0.24) 0%,
-            rgba(255, 255, 255, 0.3) 100%
+            rgba(212, 175, 55, 0.3) 0%,
+            rgba(255, 255, 255, 0.1) 100%
         );
         -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
