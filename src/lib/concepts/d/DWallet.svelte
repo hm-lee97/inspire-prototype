@@ -263,7 +263,7 @@
                                     <QrCode size={48} />
                                 </div>
                                 <p class="expires">
-                                    Valid until {voucher.expires}
+                                    Until {voucher.expires}
                                 </p>
                             </div>
                         </div>

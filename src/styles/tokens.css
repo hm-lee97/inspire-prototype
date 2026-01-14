@@ -12,8 +12,8 @@
   --status-bar-height: 54px;
   --home-indicator-height: 34px;
   --tab-bar-height: 83px;
-  --safe-area-top: 36px;
-  --safe-area-bottom: 26px;
+  --safe-area-top: 42px;
+  --safe-area-bottom: 30px;
 
   /* Grid System */
   --grid-columns: 4;
