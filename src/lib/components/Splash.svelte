@@ -6,20 +6,26 @@
     let loaded = false;
     let clicked = false;
 
-    onMount(() => {
-        // Add a small delay to ensure video can start playing
-        setTimeout(() => {
-            loaded = true;
-        }, 500);
-    });
+    let videoPlaying = false;
+    let fontsLoaded = false;
+
+    function handleVideoPlay() {
+        videoPlaying = true;
+    }
 
     function handleStart() {
         clicked = true;
-        // Add a small delay for the click animation
         setTimeout(() => {
             dispatch("enter");
         }, 800);
     }
+
+    onMount(() => {
+        // Wait for all fonts to be loaded
+        document.fonts.ready.then(() => {
+            fontsLoaded = true;
+        });
+    });
 </script>
 
 {#if !clicked}
@@ -30,34 +36,39 @@
             muted
             loop
             playsinline
-            poster="/images/splash.png"
-            class="video-bg"
+            class="video-bg {videoPlaying && fontsLoaded ? 'visible' : ''}"
+            on:playing={handleVideoPlay}
         >
             <source src="/videos/splash.mp4" type="video/mp4" />
         </video>
 
         <!-- Overlay Content -->
-        <div class="overlay" in:fade={{ duration: 1500, delay: 500 }}>
-            <div class="logo-wrapper" in:scale={{ duration: 2000, start: 0.9 }}>
-                <img
-                    src="/images/inpsire-logo-white.png"
-                    alt="INSPIRE"
-                    class="logo-image"
-                />
-                <p class="tagline">ENTERTAINMENT RESORT</p>
-            </div>
-
-            <button
-                class="enter-button"
-                on:click={handleStart}
-                in:fade={{ duration: 1000, delay: 2000 }}
-            >
-                <div class="button-content">
-                    <span class="pulse-ring"></span>
-                    <span class="btn-label">TOUCH TO ENTER</span>
+        {#if videoPlaying && fontsLoaded}
+            <div class="overlay" in:fade={{ duration: 1500, delay: 200 }}>
+                <div
+                    class="logo-wrapper"
+                    in:scale={{ duration: 2000, start: 0.9 }}
+                >
+                    <img
+                        src="/images/inpsire-logo-white.png"
+                        alt="INSPIRE"
+                        class="logo-image"
+                    />
+                    <p class="tagline">ENTERTAINMENT RESORT</p>
                 </div>
-            </button>
-        </div>
+
+                <button
+                    class="enter-button"
+                    on:click={handleStart}
+                    in:fade={{ duration: 1000, delay: 1000 }}
+                >
+                    <div class="button-content">
+                        <span class="pulse-ring"></span>
+                        <span class="btn-label">TOUCH TO ENTER</span>
+                    </div>
+                </button>
+            </div>
+        {/if}
     </div>
 {/if}
 
@@ -86,6 +97,12 @@
         transform: translate(-50%, -50%);
         object-fit: cover;
         filter: brightness(0.6) contrast(1.1) blur(2px);
+        opacity: 0;
+        transition: opacity 1s ease-in;
+    }
+
+    .video-bg.visible {
+        opacity: 1;
     }
 
     .overlay {
@@ -109,16 +126,22 @@
 
     .logo-wrapper {
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform-origin: center;
     }
 
     .logo-image {
         width: 240px;
         height: auto;
+        min-height: 40px; /* Prevent layout jump */
+        display: block;
     }
 
     .tagline {
         font-size: 10px;
-        letter-spacing: 0.6em;
+        letter-spacing: 0.5em;
         margin-top: 8px;
         opacity: 0.6;
         font-weight: 300;
