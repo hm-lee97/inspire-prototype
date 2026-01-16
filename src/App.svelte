@@ -15,8 +15,11 @@
   import AIApp from "./lib/concepts/ai/AIApp.svelte";
   import DApp from "./lib/concepts/d/DApp.svelte";
 
+  import Splash from "./lib/components/Splash.svelte";
+
   let currentView = "d"; // 'selector' | 'joyful' | 'refined' | 'ai'
   let currentTheme = "d";
+  let showSplash = true;
 
   function handleConceptSelect(event) {
     const concept = event.detail.concept;
@@ -33,6 +36,10 @@
     currentView = "selector";
     currentTheme = "joyful";
   }
+
+  function handleSplashEnter() {
+    showSplash = false;
+  }
 </script>
 
 <div class="app-container">
@@ -41,6 +48,10 @@
     showStatusBar={true}
     showHomeIndicator={true}
   >
+    {#if showSplash}
+      <Splash on:enter={handleSplashEnter} />
+    {/if}
+
     {#if currentView === "selector"}
       <div class="view" in:fade={{ duration: 300 }}>
         <ConceptSelector on:select={handleConceptSelect} />
